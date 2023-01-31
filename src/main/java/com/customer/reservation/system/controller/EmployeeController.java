@@ -4,19 +4,24 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.customer.reservation.system.entity.Employee;
 
 import io.swagger.annotations.ApiOperation;
 
 
-@Controller
+@RestController
 public class EmployeeController {
    
    @ApiOperation(value = "Testing Page")
@@ -34,24 +39,34 @@ public class EmployeeController {
    
    @ApiOperation(value = "Gets All Employees")
    @ResponseBody
-   @RequestMapping(path={"/getAllEmployees"},method=RequestMethod.GET, produces = "application/json",consumes = "application/json" )
-   public Employee getAllEmployeeso(@RequestBody Employee e) {
+   @GetMapping(path={"/getAllEmployees/{id}"}, produces = "application/json")
+   public Employee getAllEmployeeso(@PathVariable("id") Integer id ) {
 	   
 	   Employee emp = new Employee();
-	   emp.setEmployeeId(123);
-	   emp.setMailId("employee@email.com");
-	   emp.setName("Darshan H K");
-	   emp.setPhoneNo("1234567890");
-	   emp.setProject("ING");
 	   
-	   emp.setEmployeeId(e.getEmployeeId());
-	   emp.setMailId(e.getMailId());
-	   emp.setName(e.getName());
-	   emp.setPhoneNo(e.getPhoneNo());
-	   emp.setProject(e.getProject());
-
-	   
+	   emp.setEmployeeId(id);
+	   emp.setAddress("Bangalore");
+	   emp.setName("ABC");
+	   emp.setPhoneNo("0987654321");
+	   emp.setDepartmentId(1);
       
       return emp;
    }
+   
+   @PostMapping(value = "/employees")
+   @ResponseBody
+   public Employee addEmployees(@RequestBody Employee e){
+       
+	   Employee emp = new Employee();
+	   
+	   emp.setEmployeeId(e.getEmployeeId());
+	   emp.setAddress(e.getAddress());
+	   emp.setName(e.getName());
+	   emp.setPhoneNo(e.getPhoneNo());
+	   emp.setDepartmentId(e.getDepartmentId());
+      
+      return emp;
+		
+	}
+
 }

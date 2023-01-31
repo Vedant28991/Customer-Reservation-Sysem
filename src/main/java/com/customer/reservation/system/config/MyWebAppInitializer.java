@@ -18,6 +18,6 @@ public class MyWebAppInitializer extends
 
    @Override
    protected String[] getServletMappings() {
-      return new String[]{"/","/getAllEmployees"};
+      return new String[]{"/","/getAllEmployees","/employees"};
    }
 }

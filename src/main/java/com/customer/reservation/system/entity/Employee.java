@@ -4,9 +4,11 @@ public class Employee {
 
 	private Integer employeeId;
 	private String name;
-	private String project;
-	private String mailId;
+	private String address;
+	private Integer departmentId;
 	private String phoneNo;
+	
+	
 	public Integer getEmployeeId() {
 		return employeeId;
 	}
@@ -19,17 +21,17 @@ public class Employee {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getProject() {
-		return project;
+	public String getAddress() {
+		return address;
 	}
-	public void setProject(String project) {
-		this.project = project;
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	public String getMailId() {
-		return mailId;
+	public Integer getDepartmentId() {
+		return departmentId;
 	}
-	public void setMailId(String mailId) {
-		this.mailId = mailId;
+	public void setDepartmentId(Integer departmentId) {
+		this.departmentId = departmentId;
 	}
 	public String getPhoneNo() {
 		return phoneNo;
@@ -37,5 +39,5 @@ public class Employee {
 	public void setPhoneNo(String phoneNo) {
 		this.phoneNo = phoneNo;
 	}
-
+	
 }
