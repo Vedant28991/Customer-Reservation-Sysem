@@ -6,6 +6,7 @@ import java.time.format.FormatStyle;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,8 +34,8 @@ public class EmployeeController {
    
    @ApiOperation(value = "Gets All Employees")
    @ResponseBody
-   @RequestMapping(path={"/getAllEmployees"},method=RequestMethod.GET, produces = "application/json")
-   public Employee getAllEmployeeso() {
+   @RequestMapping(path={"/getAllEmployees"},method=RequestMethod.GET, produces = "application/json",consumes = "application/json" )
+   public Employee getAllEmployeeso(@RequestBody Employee e) {
 	   
 	   Employee emp = new Employee();
 	   emp.setEmployeeId(123);
@@ -42,6 +43,13 @@ public class EmployeeController {
 	   emp.setName("Darshan H K");
 	   emp.setPhoneNo("1234567890");
 	   emp.setProject("ING");
+	   
+	   emp.setEmployeeId(e.getEmployeeId());
+	   emp.setMailId(e.getMailId());
+	   emp.setName(e.getName());
+	   emp.setPhoneNo(e.getPhoneNo());
+	   emp.setProject(e.getProject());
+
 	   
       
       return emp;
