@@ -1,13 +1,30 @@
 package com.customer.reservation.system.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class Employee {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer employeeId;
 	private String name;
 	private String address;
 	private Integer departmentId;
 	private String phoneNo;
 	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "departmentId",insertable=false, updatable=false)
+	private Department department;
+
 	
 	public Integer getEmployeeId() {
 		return employeeId;

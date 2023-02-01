@@ -1,12 +1,30 @@
 package com.customer.reservation.system.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Customer {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer customerId;
 	private String customerName;
 	private String address;
 	private String phoneNumber;
-	private Integer reservationId;
+	
+	@OneToMany(mappedBy = "customer")
+	private List<Reservation> reservations = new ArrayList<>();
+
+	
+	
+	
 	public Integer getCustomerId() {
 		return customerId;
 	}
@@ -31,12 +49,7 @@ public class Customer {
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public Integer getReservationId() {
-		return reservationId;
-	}
-	public void setReservationId(Integer reservationId) {
-		this.reservationId = reservationId;
-	}
+
 	
 	
 	
